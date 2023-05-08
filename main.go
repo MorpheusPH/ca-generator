@@ -75,8 +75,6 @@ func main() {
 		Bytes: caBytes,
 	})
 
-	// dnsNames := []string{"nfs-subdir-webhook-service",
-	// 	"nfs-subdir-webhook-service.nfs-subdir-webhook-system", "nfs-subdir-webhook-service.nfs-subdir-webhook-system.svc"}
 	commonName := fmt.Sprintf("%s.%s.%s", service_name, namespace, "svc")
 	dnsNames = append(dnsNames, service_name)
 	dnsNames = append(dnsNames, fmt.Sprintf("%s.%s", service_name, namespace))
@@ -122,10 +120,6 @@ func main() {
 		Bytes: x509.MarshalPKCS1PrivateKey(serverPrivKey),
 	})
 
-	//err = os.MkdirAll("./certs/", 0666)
-	//if err != nil {
-	//	log.Panic(err)
-	//}
 	err = WriteFile("tls.crt", serverCertPEM)
 	if err != nil {
 		log.Panic(err)
