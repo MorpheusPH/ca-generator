@@ -23,11 +23,11 @@ ARG NONROOT_UID=65532
 ARG NONROOT_GID=65532
 
 WORKDIR /ca-generator
-COPY patch-mutating-webhook-configuration.json patch-mutating-webhook-configuration.json
 COPY --from=builder /workspace/ca_generator .
 
 ADD https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 
+ADD https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 
 RUN chmod +x /usr/local/bin/kubectl \
     && adduser -u $NONROOT_UID -D nonroot $NONROOT_GID \
